@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-// import logo from "./logo.svg";
 import "./App.css";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -10,8 +9,6 @@ import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "./features/combos/comboSlice";
@@ -34,7 +31,7 @@ function App() {
     // Update the document title using the browser API
     document.title = `You clicked ${count} times`;
   });
-  console.log('data = ', data)
+
   return (
     <div className="App">
       <Card sx={{ minWidth: 275 }}>
@@ -65,7 +62,7 @@ function App() {
         {data.users &&
           data.users.map((item) => {
             return (
-              <ListItem disablePadding>
+              <ListItem disablePadding key={item.id}>
                 <ListItemButton>{item.name}</ListItemButton>
               </ListItem>
             );
