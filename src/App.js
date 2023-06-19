@@ -13,7 +13,7 @@ import { decrement, increment } from "./features/combos/comboSlice";
 import axios from "axios";
 
 function App() {
-  const count = useSelector((state) => state.combo);
+  // const count = useSelector((state) => state.combos.value);
   const dispatch = useDispatch();
   const [data, setData] = useState();
 
@@ -24,10 +24,10 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
-  });
+  // useEffect(() => {
+  //   // Update the document title using the browser API
+  //   document.title = `You clicked ${count} times`;
+  // });
 
   return (
     <div className="App">
@@ -45,7 +45,7 @@ function App() {
             >
               Increment
             </Button>
-            <span>{count}</span>
+            {/* <span>{count}</span> */}
             <Button
               variant="contained"
               aria-label="Decrement value"
