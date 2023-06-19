@@ -19,11 +19,25 @@ function App() {
   const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
+  const [sports, setSports] = useState([]);
 
   useEffect(() => {
     axios.get(`https://jsonplaceholder.typicode.com/users`).then((response) => {
       const users = response.data;
       setData({ users });
+    });
+  }, []);
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        'X-RapidAPI-Key': '4CAmq0xDZ3mshfMBzPhg3nXFdwbPp1iAulFjsndyLDYEjyHWws',
+        'X-RapidAPI-Host': 'odds.p.rapidapi.com'
+      }
+    }
+    axios.get(`https://odds.p.rapidapi.com/v4/sports`, config).then((response) => {
+      const sports = response.data;
+      setSports({ sports });
     });
   }, []);
 
@@ -59,11 +73,11 @@ function App() {
         </CardContent>
       </Card>
       <List>
-        {data.users &&
-          data.users.map((item) => {
+        {sports.sports &&
+          sports.sports.map((item) => {
             return (
-              <ListItem disablePadding key={item.id}>
-                <ListItemButton>{item.name}</ListItemButton>
+              <ListItem disablePadding key={item.key}>
+                <ListItemButton>{item.title}</ListItemButton>
               </ListItem>
             );
           })}
