@@ -22,6 +22,7 @@ const FightCard: React.FC<AppProps> = ({ message = "Default message" }) => {
   const count = useSelector((state:any) => state.counter.value);
   const dispatch = useDispatch();
   const [sports, setSports]:any = useState([]);
+    const [data, setData]:any = useState(null);
     useEffect(() => {
     axios.get(`https://jsonplaceholder.typicode.com/users`).then((response) => {
       const users = response.data;
