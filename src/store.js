@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from './features/combos/comboSlice'
+import counterReducer from './state/combos/comboSlice'
 
 export default configureStore({
   reducer: {

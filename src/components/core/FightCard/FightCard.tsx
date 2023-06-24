@@ -10,15 +10,13 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 
-import { decrement, increment } from "../../../features/combos/comboSlice";
+import { decrement, increment } from "../../../state/combos/comboSlice";
 
-// Declaring type of props - see "Typing Component Props" for more examples
-type AppProps = {
-  message?: string;
-}; /* use `interface` if exporting so that consumers can extend */
+// type AppProps = {
+//   message?: string;
+// };
 
-// Easiest way to declare a Function Component; return type is inferred.
-const FightCard: React.FC<AppProps> = ({ message = "Default message" }) => {
+const FightCard = () => {
   const count = useSelector((state:any) => state.counter.value);
   const dispatch = useDispatch();
   const [sports, setSports]:any = useState([]);
@@ -55,6 +53,9 @@ return <div>
             Added
           </Typography>
           <div>
+
+
+    
             <Button
               variant="contained"
               aria-label="Increment value"
@@ -75,7 +76,7 @@ return <div>
       </Card>
       <List>
         {sports.sports &&
-          sports.sports.map((item) => {
+          sports.sports.map((item:any) => {
             return (
               <ListItem disablePadding key={item.key}>
                 <ListItemButton>{item.title}</ListItemButton>
