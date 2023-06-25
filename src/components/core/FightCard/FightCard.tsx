@@ -16,7 +16,7 @@ import { decrement, increment } from '../../../state/combos/comboSlice'
 
 const FightCard = () => {
   const { css } = useFela()
-  const count = useSelector((state: any) => state.counter.value)
+  const combos = useSelector((state: any) => state.combo)
   const dispatch = useDispatch()
   const [sports, setSports]: any = useState([])
   const [data, setData]: any = useState(null)
@@ -41,48 +41,52 @@ const FightCard = () => {
   }, [])
 
   useEffect(() => {
-    document.title = `You clicked ${count} times`
+    // document.title = `You clicked ${count} times`
   })
 
   return (
-    <div
-      className={css({
-        padding: 10,
-        fontSize: '20px',
-        color: 'darkblue',
-        ':hover': {
-          color: 'blue'
-        }
-      })}
-    >
-      HERE IT IS
-      {/* <Card sx={{ minWidth: 275 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-            Added
-          </Typography>
-          <div>
-            <Button variant='contained' aria-label='Increment value' onClick={() => dispatch(increment())}>
-              Increment
-            </Button>
-            <span>{count}</span>
-            <Button variant='contained' aria-label='Decrement value' onClick={() => dispatch(decrement())}>
-              Decrement
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-      <List>
-        {sports.sports &&
-          sports.sports.map((item: any) => {
-            return (
-              <ListItem disablePadding key={item.key}>
-                <ListItemButton>{item.title}</ListItemButton>
-              </ListItem>
-            )
+    <>
+      {combos.map((combo: { name: string; combination: any }) => (
+        <div
+          key={combo.name}
+          className={css({
+            display: 'flex',
+            fontSize: '20px'
           })}
-      </List> */}
-    </div>
+        >
+          <div>{combo.name}</div>
+          <div>{combo.combination}</div>
+        </div>
+      ))}
+    </>
+    // <Card
+    //   className={css({
+    //     padding: 10,
+    //     fontSize: '20px',
+    //     background: 'green',
+    //     color: 'darkblue',
+    //     ':hover': {
+    //       color: 'blue'
+    //     }
+    //   })}
+    // >
+    //   <Card sx={{ minWidth: 275 }}>
+    //     <CardContent>
+    //       <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
+    //         Added
+    //       </Typography>
+    //       <div>
+    //         <Button variant='contained' aria-label='Increment value' onClick={() => dispatch(increment())}>
+    //           Increment
+    //         </Button>
+    //         {/* <span>{count}</span> */}
+    //         <Button variant='contained' aria-label='Decrement value' onClick={() => dispatch(decrement())}>
+    //           Decrement
+    //         </Button>
+    //       </div>
+    //     </CardContent>
+    //   </Card>
+    // </Card>
   )
 }
 
