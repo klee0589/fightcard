@@ -17,36 +17,60 @@ import { decrement, increment } from '../../../state/combos/comboSlice'
 const FightCard = () => {
   const { css } = useFela()
   const combos = useSelector((state: any) => state.combo)
-  const dispatch = useDispatch()
-  const [sports, setSports]: any = useState([])
-  const [data, setData]: any = useState(null)
-  useEffect(() => {
-    axios.get(`https://jsonplaceholder.typicode.com/users`).then((response) => {
-      const users = response.data
-      setData({ users })
-    })
-  }, [])
+  // const dispatch = useDispatch()
+  // const [sports, setSports]: any = useState([])
+  // const [data, setData]: any = useState(null)
+  // useEffect(() => {
+  //   axios.get(`https://jsonplaceholder.typicode.com/users`).then((response) => {
+  //     const users = response.data
+  //     setData({ users })
+  //   })
+  // }, [])
+
+  // useEffect(() => {
+  //   const config = {
+  //     headers: {
+  //       'X-RapidAPI-Key': '4CAmq0xDZ3mshfMBzPhg3nXFdwbPp1iAulFjsndyLDYEjyHWws',
+  //       'X-RapidAPI-Host': 'odds.p.rapidapi.com'
+  //     }
+  //   }
+  //   axios.get(`https://odds.p.rapidapi.com/v4/sports`, config).then((response) => {
+  //     const sports = response.data
+  //     setSports({ sports })
+  //   })
+  // }, [])
+
+  const [isDrilling, setIsDrilling] = useState(false)
+
+  const [seconds, setSeconds] = useState(5)
+  const [combo, setCombo]: any = useState()
 
   useEffect(() => {
-    const config = {
-      headers: {
-        'X-RapidAPI-Key': '4CAmq0xDZ3mshfMBzPhg3nXFdwbPp1iAulFjsndyLDYEjyHWws',
-        'X-RapidAPI-Host': 'odds.p.rapidapi.com'
-      }
+    if (seconds > 0 && isDrilling) {
+      const timerId = setTimeout(() => {
+        setSeconds(seconds - 1)
+      }, 1000)
+      return () => clearTimeout(timerId) // This is to clear the timer if the component unmounts before the countdown finishes.
     }
-    axios.get(`https://odds.p.rapidapi.com/v4/sports`, config).then((response) => {
-      const sports = response.data
-      setSports({ sports })
-    })
-  }, [])
+  }, [seconds])
 
   useEffect(() => {
-    // document.title = `You clicked ${count} times`
-  })
+    const pickedRandomCombo = combos[Math.floor(Math.random() * 21)]
+    seconds === 0 && setCombo(pickedRandomCombo)
+    seconds === 0 && setSeconds(10)
+  }, [seconds])
+
+  useEffect(() => {
+    const pickedRandomCombo = combos[Math.floor(Math.random() * 21)]
+    setCombo(pickedRandomCombo)
+  }, [])
 
   return (
     <>
-      {combos.map((combo: { name: string; combination: any }) => (
+      {seconds}
+      {combo && combo.name}
+      {combo && combo.combination}
+      {/* {combos.map((combo: { name: string; combination: any }) => (
         <div
           key={combo.name}
           className={css({
@@ -57,7 +81,7 @@ const FightCard = () => {
           <div>{combo.name}</div>
           <div>{combo.combination}</div>
         </div>
-      ))}
+      ))} */}
     </>
     // <Card
     //   className={css({
