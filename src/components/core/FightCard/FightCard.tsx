@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 
+import { useFela } from 'react-fela'
+
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -13,6 +15,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import { decrement, increment } from '../../../state/combos/comboSlice'
 
 const FightCard = () => {
+  const { css } = useFela()
   const count = useSelector((state: any) => state.counter.value)
   const dispatch = useDispatch()
   const [sports, setSports]: any = useState([])
@@ -42,8 +45,18 @@ const FightCard = () => {
   })
 
   return (
-    <div>
-      <Card sx={{ minWidth: 275 }}>
+    <div
+      className={css({
+        padding: 10,
+        fontSize: '20px',
+        color: 'darkblue',
+        ':hover': {
+          color: 'blue'
+        }
+      })}
+    >
+      HERE IT IS
+      {/* <Card sx={{ minWidth: 275 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
             Added
@@ -68,7 +81,7 @@ const FightCard = () => {
               </ListItem>
             )
           })}
-      </List>
+      </List> */}
     </div>
   )
 }
