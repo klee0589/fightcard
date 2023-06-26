@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRenderer } from 'fela'
-import { RendererProvider } from 'react-fela'
+import { RendererProvider, useFela } from 'react-fela'
 
 import './App.css'
 
@@ -11,7 +11,7 @@ const renderer = createRenderer()
 const App = () => {
   return (
     <RendererProvider renderer={renderer}>
-      <div className='App'>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#279AF1' }}>
         <FightCard />
       </div>
     </RendererProvider>
