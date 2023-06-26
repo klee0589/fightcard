@@ -105,6 +105,7 @@ const FightCard = () => {
           return Combo_20
           break
         default:
+          return Combo_20
           break
       }
     }
