@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useSelector, useDispatch } from 'react-redux'
 
+import { useSelector, useDispatch } from 'react-redux'
 import { useFela } from 'react-fela'
 
 import Button from '@mui/material/Button'
@@ -14,6 +14,11 @@ import ListItemButton from '@mui/material/ListItemButton'
 
 import { decrement, increment } from '../../../state/combos/comboSlice'
 
+import { Howl, Howler } from 'howler'
+
+import Audio from '../../../assets/base_right.mp3'
+
+// import Audio from '../../../assets/base_right.mp3'
 const FightCard = () => {
   const { css } = useFela()
   const combos = useSelector((state: any) => state.combo)
@@ -40,6 +45,22 @@ const FightCard = () => {
   //   })
   // }, [])
 
+  const sound = new Howl({
+    src: Audio,
+    sprite: {
+      jab: [3000, 4000]
+    }
+  })
+
+  // var sound = new Howl({
+  //   src: Audio
+  // })
+
+  // sound.play()
+
+  // Shoot the laser!
+  // sound.play('jab')
+
   const [isDrilling, setIsDrilling] = useState(false)
 
   const [seconds, setSeconds] = useState(5)
@@ -52,17 +73,20 @@ const FightCard = () => {
       }, 1000)
       return () => clearTimeout(timerId) // This is to clear the timer if the component unmounts before the countdown finishes.
     }
-  }, [seconds])
+  }, [seconds, isDrilling])
 
   useEffect(() => {
     const pickedRandomCombo = combos[Math.floor(Math.random() * 21)]
     seconds === 0 && setCombo(pickedRandomCombo)
     seconds === 0 && setSeconds(10)
+
+    sound.play('jab')
   }, [seconds])
 
   useEffect(() => {
     const pickedRandomCombo = combos[Math.floor(Math.random() * 21)]
     setCombo(pickedRandomCombo)
+    sound.play('jab')
   }, [])
 
   return (
@@ -70,6 +94,22 @@ const FightCard = () => {
       {seconds}
       {combo && combo.name}
       {combo && combo.combination}
+      <Button
+        variant='contained'
+        color='success'
+        onClick={() => {
+          setIsDrilling(true)
+          // sound && sound.play('jab')
+        }}
+      >
+        Start
+      </Button>
+      <Button variant='outlined' color='error' onClick={() => setIsDrilling(false)}>
+        Stop
+      </Button>
+      {/* <Button variant='outlined' color='error' onClick={() => sound.play('jab')}>
+        test
+      </Button> */}
       {/* {combos.map((combo: { name: string; combination: any }) => (
         <div
           key={combo.name}
