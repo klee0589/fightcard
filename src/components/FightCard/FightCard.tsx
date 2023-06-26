@@ -7,26 +7,26 @@ import Button from '@mui/material/Button'
 
 import { Howl } from 'howler'
 
-import Combo_1 from '../../../assets/combos/combo_1.mp3'
-import Combo_2 from '../../../assets/combos/combo_2.mp3'
-import Combo_3 from '../../../assets/combos/combo_3.mp3'
-import Combo_4 from '../../../assets/combos/combo_4.mp3'
-import Combo_5 from '../../../assets/combos/combo_5.mp3'
-import Combo_6 from '../../../assets/combos/combo_6.mp3'
-import Combo_7 from '../../../assets/combos/combo_7.mp3'
-import Combo_8 from '../../../assets/combos/combo_8.mp3'
-import Combo_9 from '../../../assets/combos/combo_9.mp3'
-import Combo_10 from '../../../assets/combos/combo_10.mp3'
-import Combo_11 from '../../../assets/combos/combo_11.mp3'
-import Combo_12 from '../../../assets/combos/combo_12.mp3'
-import Combo_13 from '../../../assets/combos/combo_13.mp3'
-import Combo_14 from '../../../assets/combos/combo_14.mp3'
-import Combo_15 from '../../../assets/combos/combo_15.mp3'
-import Combo_16 from '../../../assets/combos/combo_16.mp3'
-import Combo_17 from '../../../assets/combos/combo_17.mp3'
-import Combo_18 from '../../../assets/combos/combo_18.mp3'
-import Combo_19 from '../../../assets/combos/combo_19.mp3'
-import Combo_20 from '../../../assets/combos/combo_20.mp3'
+import Combo_1 from '../../assets/combos/combo_1.mp3'
+import Combo_2 from '../../assets/combos/combo_2.mp3'
+import Combo_3 from '../../assets/combos/combo_3.mp3'
+import Combo_4 from '../../assets/combos/combo_4.mp3'
+import Combo_5 from '../../assets/combos/combo_5.mp3'
+import Combo_6 from '../../assets/combos/combo_6.mp3'
+import Combo_7 from '../../assets/combos/combo_7.mp3'
+import Combo_8 from '../../assets/combos/combo_8.mp3'
+import Combo_9 from '../../assets/combos/combo_9.mp3'
+import Combo_10 from '../../assets/combos/combo_10.mp3'
+import Combo_11 from '../../assets/combos/combo_11.mp3'
+import Combo_12 from '../../assets/combos/combo_12.mp3'
+import Combo_13 from '../../assets/combos/combo_13.mp3'
+import Combo_14 from '../../assets/combos/combo_14.mp3'
+import Combo_15 from '../../assets/combos/combo_15.mp3'
+import Combo_16 from '../../assets/combos/combo_16.mp3'
+import Combo_17 from '../../assets/combos/combo_17.mp3'
+import Combo_18 from '../../assets/combos/combo_18.mp3'
+import Combo_19 from '../../assets/combos/combo_19.mp3'
+import Combo_20 from '../../assets/combos/combo_20.mp3'
 
 interface TComboType {
   name: string
@@ -140,7 +140,16 @@ const FightCard = () => {
   const comboFormatted = () => {
     if (combo) {
       const { combination } = combo
-      return combination.map((strike: string, index: number) => <div key={combo + ' ' + index}>{strike}</div>)
+      return combination.map((strike: string, index: number) => (
+        <div
+          key={combo + ' ' + index}
+          className={css({
+            margin: '3px 0'
+          })}
+        >
+          {strike}
+        </div>
+      ))
     }
   }
 
@@ -158,7 +167,7 @@ const FightCard = () => {
     >
       <div
         className={css({
-          fontSize: '24px',
+          fontSize: '32px',
           textTransform: 'uppercase',
           marginTop: '10px'
         })}
@@ -167,12 +176,19 @@ const FightCard = () => {
       </div>
       <div
         className={css({
-          fontSize: '24px',
+          fontSize: '28px',
           textTransform: 'uppercase',
-          marginTop: '10px'
+          height: '20px'
         })}
       >
-        {/* {combo && combo.combination} */}
+        {seconds}
+      </div>
+      <div
+        className={css({
+          fontSize: '28px',
+          textTransform: 'uppercase'
+        })}
+      >
         {comboFormatted()}
       </div>
       <div

@@ -4,7 +4,7 @@ import { RendererProvider, useFela } from 'react-fela'
 
 import './App.css'
 
-import FightCard from './components/core/FightCard/FightCard'
+import FightCard from './components/FightCard/FightCard'
 
 const renderer = createRenderer()
 
