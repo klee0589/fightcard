@@ -16,9 +16,8 @@ import { decrement, increment } from '../../../state/combos/comboSlice'
 
 import { Howl, Howler } from 'howler'
 
-import Audio from '../../../assets/base_right.mp3'
+import Audio from '../../../assets/combos.mp3'
 
-// import Audio from '../../../assets/base_right.mp3'
 const FightCard = () => {
   const { css } = useFela()
   const combos = useSelector((state: any) => state.combo)
@@ -48,23 +47,19 @@ const FightCard = () => {
   const sound = new Howl({
     src: Audio,
     sprite: {
-      jab: [3000, 4000]
+      jab: [4000, 800],
+      cross: [5000, 800]
     }
   })
-
-  // var sound = new Howl({
-  //   src: Audio
-  // })
-
-  // sound.play()
-
-  // Shoot the laser!
-  // sound.play('jab')
 
   const [isDrilling, setIsDrilling] = useState(false)
 
   const [seconds, setSeconds] = useState(5)
   const [combo, setCombo]: any = useState()
+
+  useEffect(() => {
+    isDrilling && sound.play('jab')
+  }, [combo, isDrilling])
 
   useEffect(() => {
     if (seconds > 0 && isDrilling) {
@@ -78,79 +73,44 @@ const FightCard = () => {
   useEffect(() => {
     const pickedRandomCombo = combos[Math.floor(Math.random() * 21)]
     seconds === 0 && setCombo(pickedRandomCombo)
-    seconds === 0 && setSeconds(10)
-
-    sound.play('jab')
+    seconds === 0 && setSeconds(5)
   }, [seconds])
 
   useEffect(() => {
     const pickedRandomCombo = combos[Math.floor(Math.random() * 21)]
     setCombo(pickedRandomCombo)
-    sound.play('jab')
   }, [])
 
   return (
-    <>
-      {seconds}
-      {combo && combo.name}
-      {combo && combo.combination}
-      <Button
-        variant='contained'
-        color='success'
-        onClick={() => {
-          setIsDrilling(true)
-          // sound && sound.play('jab')
-        }}
-      >
-        Start
-      </Button>
-      <Button variant='outlined' color='error' onClick={() => setIsDrilling(false)}>
-        Stop
-      </Button>
-      {/* <Button variant='outlined' color='error' onClick={() => sound.play('jab')}>
-        test
-      </Button> */}
-      {/* {combos.map((combo: { name: string; combination: any }) => (
-        <div
-          key={combo.name}
-          className={css({
-            display: 'flex',
-            fontSize: '20px'
-          })}
-        >
-          <div>{combo.name}</div>
-          <div>{combo.combination}</div>
-        </div>
-      ))} */}
-    </>
-    // <Card
-    //   className={css({
-    //     padding: 10,
-    //     fontSize: '20px',
-    //     background: 'green',
-    //     color: 'darkblue',
-    //     ':hover': {
-    //       color: 'blue'
-    //     }
-    //   })}
-    // >
-    //   <Card sx={{ minWidth: 275 }}>
-    //     <CardContent>
-    //       <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-    //         Added
-    //       </Typography>
-    //       <div>
-    //         <Button variant='contained' aria-label='Increment value' onClick={() => dispatch(increment())}>
-    //           Increment
-    //         </Button>
-    //         {/* <span>{count}</span> */}
-    //         <Button variant='contained' aria-label='Decrement value' onClick={() => dispatch(decrement())}>
-    //           Decrement
-    //         </Button>
-    //       </div>
-    //     </CardContent>
-    //   </Card>
-    // </Card>
+    <Card
+      className={css({
+        padding: 10,
+        fontSize: '20px',
+        background: 'green',
+        color: 'darkblue',
+        ':hover': {
+          color: 'blue'
+        }
+      })}
+    >
+      <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 22 }} color='text.secondary' gutterBottom>
+            {seconds}
+          </Typography>
+          <div>{combo && combo.name}</div>
+          <div>{combo && combo.combination}</div>
+          <div>
+            <Button variant='contained' aria-label='Increment value' onClick={() => setIsDrilling(true)}>
+              Start
+            </Button>
+            <Button variant='contained' aria-label='Decrement value' onClick={() => setIsDrilling(false)}>
+              Stop
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </Card>
   )
 }
 
