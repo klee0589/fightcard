@@ -5,7 +5,7 @@ import { useFela } from 'react-fela'
 
 import Button from '@mui/material/Button'
 
-import { Howl, Howler } from 'howler'
+import { Howl } from 'howler'
 
 import Combo_1 from '../../../assets/combos/combo_1.mp3'
 import Combo_2 from '../../../assets/combos/combo_2.mp3'
