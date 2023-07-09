@@ -111,11 +111,15 @@ const FightCard = () => {
     }
   }
   const sound = new Howl({
-    src: grabComboAudio()
+    src: [grabComboAudio()]
   })
 
   useEffect(() => {
     isDrilling && sound.play()
+    const msg = new SpeechSynthesisUtterance()
+    msg.text = 'Hello World'
+
+    isDrilling && window.speechSynthesis.speak(msg)
   }, [combo, isDrilling])
 
   useEffect(() => {

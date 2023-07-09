@@ -13,8 +13,8 @@ const App = () => {
   return (
     <RendererProvider renderer={renderer}>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#279AF1' }}>
-        {/* <FightCard /> */}
-        <Practice />
+        <FightCard />
+        {/* <Practice /> */}
       </div>
     </RendererProvider>
   )
