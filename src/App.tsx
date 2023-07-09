@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRenderer } from 'fela'
-import { RendererProvider, useFela } from 'react-fela'
+import { RendererProvider } from 'react-fela'
 
 import './App.css'
 

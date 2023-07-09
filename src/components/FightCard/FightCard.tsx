@@ -164,74 +164,76 @@ const FightCard = () => {
   }
 
   return (
-    <div
-      className={css({
-        width: '400px',
-        height: '500px',
-        background: '#F7F7FF',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      })}
-    >
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#279AF1' }}>
       <div
         className={css({
-          fontSize: '32px',
-          textTransform: 'uppercase',
-          marginTop: '10px'
-        })}
-      >
-        {combo && combo.name}
-      </div>
-      <div
-        className={css({
-          fontSize: '28px',
-          textTransform: 'uppercase',
-          height: '20px'
-        })}
-      >
-        {seconds}
-      </div>
-      <div
-        className={css({
-          fontSize: '28px',
-          textTransform: 'uppercase'
-        })}
-      >
-        {comboFormatted()}
-      </div>
-      <div
-        className={css({
-          width: '100%',
+          width: '400px',
+          height: '500px',
+          background: '#F7F7FF',
           display: 'flex',
-          flexDirection: 'row'
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center'
         })}
       >
-        <Button
+        <div
+          className={css({
+            fontSize: '32px',
+            textTransform: 'uppercase',
+            marginTop: '10px'
+          })}
+        >
+          {combo && combo.name}
+        </div>
+        <div
+          className={css({
+            fontSize: '28px',
+            textTransform: 'uppercase',
+            height: '20px'
+          })}
+        >
+          {seconds}
+        </div>
+        <div
+          className={css({
+            fontSize: '28px',
+            textTransform: 'uppercase'
+          })}
+        >
+          {comboFormatted()}
+        </div>
+        <div
           className={css({
             width: '100%',
-            borderRadius: '0px !important'
+            display: 'flex',
+            flexDirection: 'row'
           })}
-          color='success'
-          variant='contained'
-          aria-label='Increment value'
-          onClick={() => setIsDrilling(true)}
         >
-          Start
-        </Button>
-        <Button
-          className={css({
-            width: '100%',
-            borderRadius: '0px !important'
-          })}
-          color='error'
-          variant='outlined'
-          aria-label='Decrement value'
-          onClick={() => setIsDrilling(false)}
-        >
-          Stop
-        </Button>
+          <Button
+            className={css({
+              width: '100%',
+              borderRadius: '0px !important'
+            })}
+            color='success'
+            variant='contained'
+            aria-label='Increment value'
+            onClick={() => setIsDrilling(true)}
+          >
+            Start
+          </Button>
+          <Button
+            className={css({
+              width: '100%',
+              borderRadius: '0px !important'
+            })}
+            color='error'
+            variant='outlined'
+            aria-label='Decrement value'
+            onClick={() => setIsDrilling(false)}
+          >
+            Stop
+          </Button>
+        </div>
       </div>
     </div>
   )
