@@ -134,13 +134,16 @@ const FightCard = () => {
   }, [seconds, isDrilling])
 
   useEffect(() => {
-    const pickedRandomCombo = combos[Math.floor(Math.random() * 21)]
-    seconds === 0 && setCombo(pickedRandomCombo)
-    seconds === 0 && setSeconds(5)
+    if (seconds <= 1) {
+      const pickedRandomCombo = combos[Math.floor(Math.random() * 20)]
+      console.log('pickedRandomCombo ', pickedRandomCombo)
+      seconds === 0 && setCombo(pickedRandomCombo)
+      seconds === 0 && setSeconds(5)
+    }
   }, [seconds])
 
   useEffect(() => {
-    const pickedRandomCombo = combos[Math.floor(Math.random() * 21)]
+    const pickedRandomCombo = combos[Math.floor(Math.random() * 20)]
     setCombo(pickedRandomCombo)
   }, [])
 
