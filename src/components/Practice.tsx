@@ -14,16 +14,27 @@ const Practice = () => {
   const { css } = useFela()
   const combos = useSelector((state: any) => state.combo)
 
-  const data: { name: string; position: string }[] = [
-    {
-      name: 'john',
-      position: 'HR'
+  const data = {
+    john: {
+      name: 'John',
+      position: 'Developer'
+    },
+    jane: {
+      name: 'Jane',
+      position: 'Designer'
     }
-  ]
+  }
 
-  const [users, setUsers] = useState<{ name: string; position: string }[]>(data)
-  const [position, setPosition] = useState<string>('position')
-  const [name, setName] = useState<string>('name')
+  const [users, setUsers] = useState<{ [name: string]: { name: string; position: string } }>(data)
+  const [position, setPosition] = useState<string>('')
+  const [name, setName] = useState<string>('')
+
+  useEffect(() => {
+    if (position && name) {
+      setName('')
+      setPosition('')
+    }
+  }, [users])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -31,44 +42,39 @@ const Practice = () => {
         action='submit'
         onSubmit={(e) => {
           e.preventDefault()
-          setUsers([
+          setUsers({
             ...users,
-            {
+            [name]: {
               name,
               position
             }
-          ])
-          setName('name')
-          setPosition('name')
+          })
         }}
       >
         <input
           type='text'
-          placeholder={position}
-          onChange={(e: any) => {
-            e.preventDefault()
+          placeholder='position'
+          value={position}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setPosition(e.target.value)
           }}
         />
         <input
           type='text'
-          placeholder={name}
-          onChange={(e: any) => {
-            e.preventDefault()
+          placeholder='name'
+          value={name}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setName(e.target.value)
           }}
         />
         <button type='submit'>ENTER</button>
       </form>
       <div>
-        {users.map((user: any) => {
-          return (
-            <div key={user.name}>
-              {user.name}
-              {user.position}
-            </div>
-          )
-        })}
+        {Object.entries(users).map(([key, user]) => (
+          <div key={key}>
+            Name: {user.name}, Position: {user.position}
+          </div>
+        ))}
       </div>
     </div>
   )
