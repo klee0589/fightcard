@@ -115,11 +115,13 @@ const FightCard = () => {
   })
 
   useEffect(() => {
-    isDrilling && sound.play()
     const msg = new SpeechSynthesisUtterance()
-    msg.text = 'Hello World'
-
-    isDrilling && window.speechSynthesis.speak(msg)
+    if (combo) {
+      const splitCombo = combo.name.split('_')
+      msg.text = 'Combo ' + splitCombo[1]
+      isDrilling && window.speechSynthesis.speak(msg)
+      // isDrilling && sound.play()
+    }
   }, [combo, isDrilling])
 
   useEffect(() => {
