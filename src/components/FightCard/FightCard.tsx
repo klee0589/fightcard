@@ -84,7 +84,7 @@ const FightCard = () => {
             variant='contained'
             onClick={() => setIsDrilling(!isDrilling)}
           >
-            {isDrilling ? 'Start' : 'Stop'}
+            {isDrilling ? 'STOP' : 'START'}
           </Button>
         </div>
       </div>
