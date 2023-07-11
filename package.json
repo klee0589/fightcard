@@ -38,6 +38,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
