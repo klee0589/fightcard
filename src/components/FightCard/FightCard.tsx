@@ -38,7 +38,6 @@ const FightCard = () => {
   useEffect(() => {
     if (seconds <= 1) {
       const pickedRandomCombo = combos[Math.floor(Math.random() * 20)]
-      console.log('pickedRandomCombo ', pickedRandomCombo)
       seconds === 0 && setCombo(pickedRandomCombo)
       seconds === 0 && setSeconds(5)
     }
