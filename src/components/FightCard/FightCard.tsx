@@ -7,7 +7,7 @@ import Button from '@mui/material/Button'
 
 import { TComboType } from './types'
 
-import { background } from './styles'
+import { mainContainer, cardContainer, comboName, timer, buttonContainer, button } from './styles'
 
 const FightCard = () => {
   const { css } = useFela()
@@ -15,7 +15,7 @@ const FightCard = () => {
 
   const [isDrilling, setIsDrilling] = useState<boolean>(false)
   const [seconds, setSeconds] = useState<number>(5)
-  const [combo, setCombo] = useState<TComboType | null>(null)
+  const [combo, setCombo] = useState<TComboType | null>()
 
   useEffect(() => {
     const msg = new SpeechSynthesisUtterance()
@@ -66,41 +66,10 @@ const FightCard = () => {
   }
 
   return (
-    <div style={background(isDrilling)}>
-      <div
-        className={css({
-          width: '400px',
-          height: '500px',
-          borderRadius: '15px',
-          background: '#F7F7FF',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          ...(isDrilling && {
-            animation: 'shakeX',
-            animationDuration: '1s'
-          })
-        })}
-      >
-        <div
-          className={css({
-            fontSize: '32px',
-            textTransform: 'uppercase',
-            marginTop: '10px'
-          })}
-        >
-          {combo && combo.name}
-        </div>
-        <div
-          className={css({
-            fontSize: '28px',
-            textTransform: 'uppercase',
-            height: '20px'
-          })}
-        >
-          {seconds}
-        </div>
+    <div className={css(mainContainer(isDrilling))}>
+      <div className={css(cardContainer(isDrilling))}>
+        <div className={css(comboName)}>{combo?.name}</div>
+        <div className={css(timer)}>{seconds}</div>
         <div
           className={css({
             fontSize: '28px',
@@ -109,36 +78,14 @@ const FightCard = () => {
         >
           {comboFormatted()}
         </div>
-        <div
-          className={css({
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'row'
-          })}
-        >
+        <div className={css(buttonContainer)}>
           <Button
-            className={css({
-              width: '100%',
-              borderRadius: '0px !important'
-            })}
-            color='success'
+            className={css(button)}
+            color={isDrilling ? 'error' : 'success'}
             variant='contained'
-            aria-label='Increment value'
-            onClick={() => setIsDrilling(true)}
+            onClick={() => setIsDrilling(!isDrilling)}
           >
-            Start
-          </Button>
-          <Button
-            className={css({
-              width: '100%',
-              borderRadius: '0px !important'
-            })}
-            color='error'
-            variant='contained'
-            aria-label='Decrement value'
-            onClick={() => setIsDrilling(false)}
-          >
-            Stop
+            {isDrilling ? 'Start' : 'Stop'}
           </Button>
         </div>
       </div>
