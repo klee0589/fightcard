@@ -15,6 +15,7 @@ export const cardContainer = (isDrilling: boolean) => ({
   flexDirection: 'column',
   justifyContent: 'space-between',
   alignItems: 'center',
+  boxShadow: '2px 2px #1e272e',
   ...(isDrilling && {
     animation: 'shakeX',
     animationDuration: '1s'
@@ -40,6 +41,6 @@ export const buttonContainer = {
 }
 
 export const button = {
-  width: '100%',
-  borderRadius: '0px !important'
+  // width: '100%',
+  borderRadius: '0 0 15px 15px'
 }

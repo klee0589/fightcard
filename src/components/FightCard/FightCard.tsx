@@ -10,11 +10,13 @@ import { TComboType } from './types'
 import { mainContainer, cardContainer, comboName, timer, buttonContainer, button } from './styles'
 
 const FightCard = () => {
+  const comboIntervalTime: number = 3
+
   const { css } = useFela()
   const combos = useSelector((state: any) => state.combo)
 
   const [isDrilling, setIsDrilling] = useState<boolean>(false)
-  const [seconds, setSeconds] = useState<number>(5)
+  const [seconds, setSeconds] = useState<number>(comboIntervalTime)
   const [combo, setCombo] = useState<TComboType | null>()
 
   useEffect(() => {
@@ -22,6 +24,7 @@ const FightCard = () => {
     if (combo) {
       const splitCombo = combo.name.split('_')
       msg.text = 'Combo ' + splitCombo[1]
+      msg.volume = 0.7
       isDrilling && window.speechSynthesis.speak(msg)
     }
   }, [combo, isDrilling])
@@ -39,7 +42,7 @@ const FightCard = () => {
     if (seconds <= 1) {
       const pickedRandomCombo = combos[Math.floor(Math.random() * 20)]
       seconds === 0 && setCombo(pickedRandomCombo)
-      seconds === 0 && setSeconds(5)
+      seconds === 0 && setSeconds(comboIntervalTime)
     }
   }, [seconds])
 
@@ -79,7 +82,8 @@ const FightCard = () => {
         </div>
         <div className={css(buttonContainer)}>
           <Button
-            className={css(button)}
+            sx={button}
+            fullWidth
             color={isDrilling ? 'error' : 'success'}
             variant='contained'
             onClick={() => setIsDrilling(!isDrilling)}
