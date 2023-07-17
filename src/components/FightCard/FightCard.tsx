@@ -8,7 +8,7 @@ import Button from '@mui/material/Button'
 
 import { TComboType } from './types'
 
-import { mainContainer, cardContainer, comboName, timer, buttonContainer, startButton, bottomButton } from './styles'
+import { mainContainer, cardContainer, recordContainer, comboName, timer, buttonContainer, startButton, bottomButton } from './styles'
 
 const FightCard = () => {
   const comboIntervalTime: number = 3
@@ -75,7 +75,7 @@ const FightCard = () => {
 
   return (
     <div className={css(mainContainer(isDrilling))}>
-      <div style={{ background: 'white', height: '400px', width: '400px', color: 'black' }}>
+      <div className={css(recordContainer(isDrilling))}>
         {drilledCombos &&
           drilledCombos.map((drilledCombo: any, index: number) => {
             return (

@@ -20,7 +20,25 @@ export const cardContainer = (isDrilling: boolean) => ({
     animation: 'shakeX',
     animationDuration: '1s'
   }),
-  marginLeft: '20px'
+  marginLeft: '20px',
+  boxSizing: 'border-box'
+})
+
+export const recordContainer = (isDrilling: boolean) => ({
+  width: '400px',
+  height: '500px',
+  borderRadius: '15px',
+  background: '#F7F7FF',
+  display: 'flex',
+  flexDirection: 'column',
+  boxShadow: '2px 2px #1e272e',
+  ...(isDrilling && {
+    animation: 'shakeX',
+    animationDuration: '1s'
+  }),
+  padding: '10px',
+  boxSizing: 'border-box',
+  overflow: 'scroll'
 })
 
 export const comboName = {
