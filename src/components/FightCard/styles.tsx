@@ -19,7 +19,8 @@ export const cardContainer = (isDrilling: boolean) => ({
   ...(isDrilling && {
     animation: 'shakeX',
     animationDuration: '1s'
-  })
+  }),
+  marginLeft: '20px'
 })
 
 export const comboName = {

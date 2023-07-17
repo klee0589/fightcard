@@ -75,7 +75,7 @@ const FightCard = () => {
 
   return (
     <div className={css(mainContainer(isDrilling))}>
-      <div style={{ background: 'white', height: '100%', width: '400px', color: 'black' }}>
+      <div style={{ background: 'white', height: '400px', width: '400px', color: 'black' }}>
         {drilledCombos &&
           drilledCombos.map((drilledCombo: any, index: number) => {
             return (
