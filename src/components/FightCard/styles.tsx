@@ -37,10 +37,13 @@ export const timer = {
 export const buttonContainer = {
   width: '100%',
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'column'
 }
 
-export const button = {
-  // width: '100%',
+export const startButton = {
+  borderRadius: '0 0 0 0'
+}
+
+export const bottomButton = {
   borderRadius: '0 0 15px 15px'
 }

@@ -4,10 +4,11 @@ import { useSelector } from 'react-redux'
 import { useFela } from 'react-fela'
 
 import Button from '@mui/material/Button'
+// import ControlBar from '../../ui/ControlBar/ControlBar'
 
 import { TComboType } from './types'
 
-import { mainContainer, cardContainer, comboName, timer, buttonContainer, button } from './styles'
+import { mainContainer, cardContainer, comboName, timer, buttonContainer, startButton, bottomButton } from './styles'
 
 const FightCard = () => {
   const comboIntervalTime: number = 3
@@ -19,6 +20,8 @@ const FightCard = () => {
   const [seconds, setSeconds] = useState<number>(comboIntervalTime)
   const [combo, setCombo] = useState<TComboType | null>()
 
+  const [drilledCombos, setDrilledCombos] = useState<any>([])
+
   useEffect(() => {
     const msg = new SpeechSynthesisUtterance()
     if (combo) {
@@ -26,6 +29,7 @@ const FightCard = () => {
       msg.text = 'Combo ' + splitCombo[1]
       msg.volume = 0.7
       isDrilling && window.speechSynthesis.speak(msg)
+      setDrilledCombos([...drilledCombos, combo])
     }
   }, [combo, isDrilling])
 
@@ -35,6 +39,8 @@ const FightCard = () => {
         setSeconds(seconds - 1)
       }, 1000)
       return () => clearTimeout(timerId)
+    } else {
+      setSeconds(3)
     }
   }, [seconds, isDrilling])
 
@@ -69,6 +75,12 @@ const FightCard = () => {
 
   return (
     <div className={css(mainContainer(isDrilling))}>
+      <div style={{ background: 'white', height: '100px', width: '100px', color: 'black' }}>
+        {drilledCombos &&
+          drilledCombos.map((drilledCombo: any, index: number) => {
+            return <div key={drilledCombo.name + '_' + index}>{drilledCombo.name}</div>
+          })}
+      </div>
       <div className={css(cardContainer(isDrilling))}>
         <div className={css(comboName)}>{combo?.name}</div>
         <div className={css(timer)}>{seconds}</div>
@@ -82,7 +94,7 @@ const FightCard = () => {
         </div>
         <div className={css(buttonContainer)}>
           <Button
-            sx={button}
+            sx={startButton}
             fullWidth
             color={isDrilling ? 'error' : 'success'}
             variant='contained'
@@ -90,8 +102,22 @@ const FightCard = () => {
           >
             {isDrilling ? 'STOP' : 'START'}
           </Button>
+          <Button
+            sx={bottomButton}
+            fullWidth
+            color={'info'}
+            variant='contained'
+            onClick={() => {
+              setDrilledCombos([])
+              setIsDrilling(false)
+              setSeconds(3)
+            }}
+          >
+            RESET
+          </Button>
         </div>
       </div>
+      {/* <ControlBar /> */}
     </div>
   )
 }
