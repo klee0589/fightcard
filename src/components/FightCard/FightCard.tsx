@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useFela } from 'react-fela'
 
 import Button from '@mui/material/Button'
@@ -10,10 +10,14 @@ import { TComboType } from './types'
 
 import { mainContainer, cardContainer, recordContainer, comboName, timer, buttonContainer, startButton, bottomButton } from './styles'
 
+import { removeById } from '../../state/combos/comboSlice'
+
 const FightCard = () => {
   const comboIntervalTime: number = 3
 
   const { css } = useFela()
+  const dispatch = useDispatch()
+
   const combos = useSelector((state: any) => state.combo)
 
   const [isDrilling, setIsDrilling] = useState<boolean>(false)
@@ -80,7 +84,24 @@ const FightCard = () => {
           drilledCombos.map((drilledCombo: any, index: number) => {
             return (
               <div key={drilledCombo.name + '_' + index} style={{ margin: '5px 0' }}>
-                {index}. {drilledCombo.name} - {drilledCombo.combination}
+                <div>
+                  {index}. {drilledCombo.name} - {drilledCombo.combination}
+                </div>
+                <div>
+                  <Button
+                    sx={startButton}
+                    // fullWidth
+                    color={'error'}
+                    variant='contained'
+                    onClick={() => {
+                      if (drilledCombo.name) {
+                        dispatch(removeById(drilledCombo.name))
+                      }
+                    }}
+                  >
+                    {'DELETE'}
+                  </Button>
+                </div>
               </div>
             )
           })}
