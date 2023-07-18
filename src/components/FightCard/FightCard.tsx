@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { useFela } from 'react-fela'
 
 import Button from '@mui/material/Button'
-// import ControlBar from '../../ui/ControlBar/ControlBar'
+import ControlBar from '../ControlBar/ControlBar'
 
 import { TComboType } from './types'
 
@@ -121,7 +121,7 @@ const FightCard = () => {
           </Button>
         </div>
       </div>
-      {/* <ControlBar /> */}
+      <ControlBar isDrilling={isDrilling} />
     </div>
   )
 }
