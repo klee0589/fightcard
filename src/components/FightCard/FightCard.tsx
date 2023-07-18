@@ -96,6 +96,7 @@ const FightCard = () => {
                     onClick={() => {
                       if (drilledCombo.name) {
                         dispatch(removeById(drilledCombo.name))
+                        setDrilledCombos(drilledCombos.filter((item: any) => item.name !== drilledCombo.name))
                       }
                     }}
                   >
