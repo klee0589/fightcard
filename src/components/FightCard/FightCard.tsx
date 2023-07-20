@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useFela } from 'react-fela'
 
 import Button from '@mui/material/Button'
-import ControlBar from '../ControlBar/ControlBar'
+import Stats from '../Stats/Stats'
 
 import { TComboType } from './types'
 
@@ -44,7 +44,7 @@ const FightCard = () => {
       }, 1000)
       return () => clearTimeout(timerId)
     } else {
-      setSeconds(3)
+      setSeconds(comboIntervalTime)
     }
   }, [seconds, isDrilling])
 
@@ -143,7 +143,7 @@ const FightCard = () => {
           </Button>
         </div>
       </div>
-      <ControlBar isDrilling={isDrilling} />
+      <Stats isDrilling={isDrilling} />
     </div>
   )
 }
