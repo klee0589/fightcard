@@ -6,8 +6,9 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.3",
+    "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.13.5",
+    "@mui/material": "^5.14.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -24,6 +25,7 @@
     "react-fela": "^12.2.1",
     "react-redux": "^8.1.0",
     "react-scripts": "^5.0.1",
+    "recharts": "^2.7.2",
     "redux": "^4.2.1",
     "web-vitals": "^2.1.4"
   },
@@ -59,7 +61,12 @@
       "last 1 safari version"
     ]
   },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
   "devDependencies": {
+    "@babel/runtime": "7.2",
     "@storybook/addon-essentials": "^7.0.26",
     "@storybook/addon-interactions": "^7.0.26",
     "@storybook/addon-links": "^7.0.26",
@@ -78,8 +85,7 @@
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "storybook": "^7.0.26",
-    "webpack": "^5.88.1",
-    "@babel/runtime": "7.2",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.1"
   }
 }
