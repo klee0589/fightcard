@@ -11,6 +11,7 @@ import { TComboType } from './types'
 import { mainContainer, cardContainer, recordContainer, comboName, timer, buttonContainer, startButton, bottomButton } from './styles'
 
 import { removeById } from '../../state/combos/comboSlice'
+import { add } from '../../state/stats/statsSlice'
 
 const FightCard = () => {
   const comboIntervalTime: number = 3
@@ -34,6 +35,9 @@ const FightCard = () => {
       msg.volume = 0.7
       isDrilling && window.speechSynthesis.speak(msg)
       setDrilledCombos([...drilledCombos, combo])
+      console.log('combo = ', combo)
+
+      dispatch(add('jab'))
     }
   }, [combo, isDrilling])
 
