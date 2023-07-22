@@ -30,14 +30,41 @@ const FightCard = () => {
   useEffect(() => {
     const msg = new SpeechSynthesisUtterance()
     if (combo) {
-      const splitCombo = combo.name.split('_')
+      const { combination, name } = combo
+
+      const splitCombo = name.split('_')
       msg.text = 'Combo ' + splitCombo[1]
       msg.volume = 0.7
       isDrilling && window.speechSynthesis.speak(msg)
       setDrilledCombos([...drilledCombos, combo])
-      console.log('combo = ', combo)
 
-      dispatch(add('jab'))
+      combination.map((combo: string) => {
+        switch (combo) {
+          case 'Right Uppercut':
+            dispatch(add('rUppercut'))
+            break
+          case 'Left Uppercut':
+            dispatch(add('lUppercut'))
+            break
+          case 'Jab':
+            dispatch(add('jab'))
+            break
+          case 'Cross':
+            dispatch(add('cross'))
+            break
+          case 'Right Cross':
+            dispatch(add('rCross'))
+            break
+          case 'Left Cross':
+            dispatch(add('lCross'))
+            break
+          case 'Right Overhand':
+            dispatch(add('rOverhand'))
+            break
+          default:
+            break
+        }
+      })
     }
   }, [combo, isDrilling])
 

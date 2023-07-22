@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useFela } from 'react-fela'
+import { useSelector } from 'react-redux'
 
 import { cardContainer } from './styles'
 
@@ -11,13 +12,16 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#3C486B', '#EF6262'
 const Stats = ({ isDrilling }: { isDrilling: boolean }) => {
   const { css } = useFela()
 
+  const stats = useSelector((state: any) => state.stats)
+
   const data = [
-    { name: 'Jab', value: 0 },
-    { name: 'Cross', value: 0 },
-    { name: 'L Hook', value: 0 },
-    { name: 'R Hook', value: 0 },
-    { name: 'L Uppercut', value: 0 },
-    { name: 'R Uppercut', value: 0 }
+    { name: 'Jab', value: stats['jab'].count },
+    { name: 'Cross', value: stats['cross'].count },
+    { name: 'L Hook', value: stats['lHook'].count },
+    { name: 'R Hook', value: stats['rHook'].count },
+    { name: 'L Uppercut', value: stats['lUppercut'].count },
+    { name: 'R Uppercut', value: stats['rUppercut'].count },
+    { name: 'R Overhand', value: stats['rOverhand'].count }
   ]
 
   return (
