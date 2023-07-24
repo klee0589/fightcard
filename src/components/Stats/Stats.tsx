@@ -6,15 +6,16 @@ import { useSelector } from 'react-redux'
 import { cardContainer } from './styles'
 
 import { PieChart, Pie, ResponsiveContainer, Legend, Cell } from 'recharts'
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#3C486B', '#EF6262']
+import { colors, TColor } from '../../palette'
 
 const Stats = ({ isDrilling }: { isDrilling: boolean }) => {
   const { css } = useFela()
 
   const stats = useSelector((state: any) => state.stats)
 
-  const data = [
+  const COLORS = [colors.teal, colors.mint_green, colors.coral, colors.mustard, colors.lavender, colors.slate_gray, colors.turquoise]
+
+  const data: { name: string; value: number }[] = [
     { name: 'Jab', value: stats['jab'].count },
     { name: 'Cross', value: stats['cross'].count },
     { name: 'L Hook', value: stats['lHook'].count },
