@@ -52,11 +52,11 @@ const FightCard = () => {
           case 'Cross':
             dispatch(add('cross'))
             break
-          case 'Right Cross':
-            dispatch(add('rCross'))
+          case 'Right Hook':
+            dispatch(add('rHook'))
             break
-          case 'Left Cross':
-            dispatch(add('lCross'))
+          case 'Left Hook':
+            dispatch(add('lHook'))
             break
           case 'Right Overhand':
             dispatch(add('rOverhand'))
