@@ -111,7 +111,7 @@ const FightCard = () => {
             return (
               <div key={drilledCombo.name + '_' + index} style={{ margin: '5px 0' }}>
                 <div>
-                  {index}. {drilledCombo.name} - {drilledCombo.combination}
+                  {index + 1}. {drilledCombo.name} - {drilledCombo.combination}
                 </div>
                 <div>
                   <Button
