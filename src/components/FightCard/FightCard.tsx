@@ -87,11 +87,6 @@ const FightCard = () => {
     }
   }, [seconds])
 
-  useEffect(() => {
-    const pickedRandomCombo = combos[Math.floor(Math.random() * 20)]
-    setCombo(pickedRandomCombo)
-  }, [])
-
   const comboFormatted = () => {
     if (combo) {
       const { combination } = combo

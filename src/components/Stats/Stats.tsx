@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { cardContainer } from './styles'
 
 import { PieChart, Pie, ResponsiveContainer, Legend, Cell } from 'recharts'
-import { colors, TColor } from '../../palette'
+import { colors } from '../../palette'
 
 const Stats = ({ isDrilling }: { isDrilling: boolean }) => {
   const { css } = useFela()
