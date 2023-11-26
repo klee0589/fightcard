@@ -7,31 +7,26 @@ export const mainContainer = (isDrilling: boolean) => ({
 })
 
 export const cardContainer = (isDrilling: boolean) => ({
-  width: '400px',
+  width: '100%',
   height: '500px',
-  borderRadius: '15px',
   background: '#F7F7FF',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   alignItems: 'center',
-  boxShadow: '2px 2px #1e272e',
   ...(isDrilling && {
     animation: 'shakeX',
     animationDuration: '1s'
   }),
-  marginLeft: '20px',
   boxSizing: 'border-box'
 })
 
 export const recordContainer = (isDrilling: boolean) => ({
   width: '400px',
   height: '500px',
-  borderRadius: '15px',
   background: '#F7F7FF',
   display: 'flex',
   flexDirection: 'column',
-  boxShadow: '2px 2px #1e272e',
   ...(isDrilling && {
     animation: 'shakeX',
     animationDuration: '1s'
@@ -60,9 +55,11 @@ export const buttonContainer = {
 }
 
 export const startButton = {
-  borderRadius: '0 0 0 0'
+  borderRadius: '0',
+  height: '100px'
 }
 
 export const bottomButton = {
-  borderRadius: '0 0 15px 15px'
+  borderRadius: '0',
+  height: '100px'
 }

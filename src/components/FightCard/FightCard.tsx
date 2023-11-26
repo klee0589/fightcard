@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useFela } from 'react-fela'
 
 import Button from '@mui/material/Button'
-import Stats from '../Stats/Stats'
+// import Stats from '../Stats/Stats'
 
 import { TComboType } from './types'
 
-import { mainContainer, cardContainer, recordContainer, comboName, timer, buttonContainer, startButton, bottomButton } from './styles'
+import { mainContainer, cardContainer, comboName, timer, buttonContainer, startButton, bottomButton } from './styles'
 
-import { removeById } from '../../state/combos/comboSlice'
+// import { removeById } from '../../state/combos/comboSlice'
 import { add } from '../../state/stats/statsSlice'
 
 const FightCard = () => {
@@ -105,7 +105,7 @@ const FightCard = () => {
 
   return (
     <div className={css(mainContainer(isDrilling))}>
-      <div className={css(recordContainer(isDrilling))}>
+      {/* <div className={css(recordContainer(isDrilling))}>
         {drilledCombos &&
           drilledCombos.map((drilledCombo: any, index: number) => {
             return (
@@ -132,7 +132,7 @@ const FightCard = () => {
               </div>
             )
           })}
-      </div>
+      </div> */}
       <div className={css(cardContainer(isDrilling))}>
         <div className={css(comboName)}>{combo?.name}</div>
         <div className={css(timer)}>{seconds}</div>
@@ -169,7 +169,7 @@ const FightCard = () => {
           </Button>
         </div>
       </div>
-      <Stats isDrilling={isDrilling} />
+      {/* <Stats isDrilling={isDrilling} /> */}
     </div>
   )
 }
